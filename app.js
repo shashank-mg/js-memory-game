@@ -26,10 +26,10 @@ allDivs.forEach((e) => e.classList.add("aligner"));
 let count = 0;
 let map = new Map();
 let obj = Object.create(null);
+let endGame = 0;
 
 allDivs.forEach((ele) => {
   ele.addEventListener("click", () => {
-    console.log(count);
     ele.style.transition = "all 0.4s";
     ele.style.transform = "rotateY(360deg)";
     ele.style.color = "black";
@@ -49,13 +49,11 @@ allDivs.forEach((ele) => {
 
     if (count >= 1) {
       selectOut.style.pointerEvents = "initial";
-      console.log(map.size);
       if (map.size >= 2) {
         let keysOfObj = Object.keys(obj);
         let select1 = document.querySelector(`.${keysOfObj[0]}`);
         let select2 = document.querySelector(`.${keysOfObj[1]}`);
         setTimeout(() => {
-          console.log(select1, select2);
           select1.style.transition = "all 0.4s";
           select1.style.transform = "rotateY(-360deg)";
           select2.style.transition = "all 0.4s";
@@ -71,14 +69,18 @@ allDivs.forEach((ele) => {
         let select2 = document.querySelector(`.${keysOfObj[1]}`);
         select1.style.pointerEvents = "none";
         select2.style.pointerEvents = "none";
+        endGame++;
         obj = {};
         map.clear();
       }
       count = 0;
     } else {
       count++;
-      console.log(count);
     }
-    console.log(map);
+    if (endGame === 18) {
+      modal.style.display = "block";
+      blocker.style.display = "block";
+      window.location.reload();
+    }
   });
 });
