@@ -1,5 +1,7 @@
 body {
   font-family: "Nunito SemiBold";
+  background: url("sky.jpg") repeat;
+  background-size: cover;
   margin: 0px;
   padding: 0px;
   -khtml-user-select: none;
